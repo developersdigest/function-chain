@@ -1,4 +1,4 @@
-# FunctionChain
+# ai-function-chain
 
 ai-function-chain is a powerful JavaScript library that orchestrates a series of functions with OpenAI's GPT-3.5 Turbo model. It's perfect for creating complex conversational applications.
 
@@ -33,15 +33,10 @@ First, import the `FunctionChain` class from `ai-function-chain` and create a ne
 ```javascript
 import { FunctionChain } from "ai-function-chain";
 
-const initOptions = {
-  openaiOptions: {
-    model: "gpt-3.5-turbo-0613",
-  },
-  functionsDirectory: "./openAIFunctions",
-};
-
-const functionChain = new FunctionChain(initOptions);
+const functionChain = new FunctionChain();
 ```
+
+Note: If you are testing out the library and want to use the example functions, you don't need to specify any options. The library will default to use the functions in the `exampleFunctions` directory provided within the package.
 
 Then, use the `call` method with a message, and optionally specify a set of functions to execute:
 
@@ -53,6 +48,21 @@ const res3 = await functionChain.call("Get me the latest price of Ethereum", {
 });
 
 console.log(res1, res2, res3);
+```
+
+## Advanced Options
+
+When creating the FunctionChain instance, you can also specify a different OpenAI model and a custom directory for your function modules:
+
+```javascript
+const initOptions = {
+  openaiOptions: {
+    model: "gpt-3.5-turbo-0613", // specify a different model if needed
+  },
+  functionsDirectory: "./myFunctions", // specify a custom directory if you have one
+};
+
+const functionChain = new FunctionChain(initOptions);
 ```
 
 ## Creating Functions
