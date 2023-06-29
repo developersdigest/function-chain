@@ -52,7 +52,7 @@ const res3 = await functionChain.call("Get me the latest price of Ethereum", {
 console.log(res1, res2, res3);
 ```
 
-## Advanced Options
+## Recommended Options
 
 When creating the FunctionChain instance, you can also specify a different OpenAI model and a custom directory for your function modules:
 
