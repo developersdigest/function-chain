@@ -6,6 +6,8 @@
 npm install ai-function-chain
 # or
 yarn add ai-function-chain
+# or
+pnpm install ai-function-chain
 ```
 
 2. Create a file named `.env` at the root of your project. Obtain your OpenAI API Key from [here](https://platform.openai.com/account/api-keys), and add it to the `.env` file:
