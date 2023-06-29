@@ -1,63 +1,48 @@
-# FunctionChain
-
-![FunctionChain Image](https://i.imgur.com/nHp7uRq.gif)
-
-
-FunctionChain is a  JavaScript library that orchestrates a series of functions with OpenAI's GPT-3.5 and GPT-4 models. 
-
-The library automatically loads and executes functions defined in separate JavaScript modules and manages all the interactions with the OpenAI API. 
-
 ## Installation
 
-Using npm:
+1. Install the package using npm or yarn:
 
 ```bash
 npm install ai-function-chain
-```
-
-Using yarn:
-
-```bash
+# or
 yarn add ai-function-chain
 ```
 
-## Setup
-
-In order to use FunctionChain, you need to have an API key from OpenAI. If you don't already have one, you can get it from [here](https://platform.openai.com/account/api-keys).
-
-Create a `.env` file in the root of your project and add your OpenAI API Key:
+2. Create a file named `.env` at the root of your project. Obtain your OpenAI API Key from [here](https://platform.openai.com/account/api-keys), and add it to the `.env` file:
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-## Usage
+## Setup
 
-First, import the `FunctionChain` class from `ai-function-chain` and create a new instance:
+To setup `FunctionChain`:
+
+1. Create an `index.js` file in the root of your project.
+2. Import the `FunctionChain` class from `ai-function-chain` and instantiate it.
+3. Call the `call` method with a message. Optionally, you can specify a set of functions to execute.
 
 ```javascript
 import { FunctionChain } from "ai-function-chain";
 
 const functionChain = new FunctionChain();
+
+async function main() {
+    const res1 = await functionChain.call("Get me the latest price of Bitcoin");
+    const res2 = await functionChain.call("Open the calculator on my computer");
+    const res3 = await functionChain.call("Get me the latest price of Ethereum", {
+        functionArray: ["latestPrices"] // Optionally specify which functions to use
+    });
+
+    console.log(res1, res2, res3);
+}
+
+main();
 ```
 
-Note: If you are testing out the library and want to use the example functions, you don't need to specify any options. The library will default to use the functions in the `exampleFunctions` directory provided within the package.
+## Customization
 
-Then, use the `call` method with a message, and optionally specify a set of functions to execute:
-
-```javascript
-const res1 = await functionChain.call("Get me the latest price of Bitcoin");
-const res2 = await functionChain.call("Open the calculator on my computer");
-const res3 = await functionChain.call("Get me the latest price of Ethereum", {
-  functionArray: ["latestPrices"] // Optionally specify which functions to use
-});
-
-console.log(res1, res2, res3);
-```
-
-## Recommended Options
-
-When creating the FunctionChain instance, you can also specify a different OpenAI model and a custom directory for your function modules:
+You can customize FunctionChain instance by specifying different OpenAI model and a custom directory for your function modules:
 
 ```javascript
 const initOptions = {
@@ -70,16 +55,14 @@ const initOptions = {
 const functionChain = new FunctionChain(initOptions);
 ```
 
-## Creating Functions
+## Adding Custom Functions
 
-All function modules should be placed in the directory specified in the `FunctionChain` constructor (`functionsDirectory` option). 
-
-Each function module should follow this pattern:
+1. Create a new JavaScript file for your function in the `functionsDirectory` specified while creating the `FunctionChain` instance.
+2. Follow the following pattern to define your function:
 
 ```javascript
-// 1. Add Dependencies
 import { exec } from 'child_process';
-// 2. Write Function Code Within Execute Function
+
 export const execute = (options) => {
     const { appName } = options;
     return new Promise((resolve, reject) => {
@@ -92,7 +75,7 @@ export const execute = (options) => {
         });
     });
 }
-// 3. Add Function Details for LLM to use
+
 export const details = {
     name: "openApp",
     description: "Opens a specified application on your computer",
@@ -110,4 +93,10 @@ export const details = {
 };
 ```
 
-With this structure, the library will automatically import and use your functions. The `name` property in the `details` object should match the filename of the module. Place your function logic inside the `execute` function. If your function has dependencies, you can import them at the top of the file.
+## Running Your Project
+
+After setting up `index.js` and adding your functions, run your project using:
+
+```bash
+npm run dev
+```
