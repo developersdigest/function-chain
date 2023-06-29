@@ -1,6 +1,6 @@
 # FunctionChain
 
-ai-function-chain is a powerful JavaScript library that orchestrates a series of functions with OpenAI's GPT-3.5 Turbo model. It's perfect for creating complex conversational applications.
+FunctionChain is a powerful JavaScript library that orchestrates a series of functions with OpenAI's GPT-3.5 and GPT-4 models. It's perfect for creating complex conversational applications.
 
 The library uses the `.env` file for configurations, loads and executes functions defined in separate JavaScript modules, and manages all the interactions with the OpenAI API.
 
