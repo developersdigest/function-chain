@@ -1,8 +1,8 @@
 # FunctionChain
 
-FunctionChain is JavaScript library that orchestrates a series of functions with OpenAI's GPT-3.5 and GPT-4 models. It's perfect for creating complex conversational applications.
+FunctionChain is a powerful JavaScript library that orchestrates a series of functions with OpenAI's GPT-3.5 and GPT-4 models. It's perfect for creating complex conversational applications.
 
-The library uses the `.env` file for configurations, loads and executes functions defined in separate JavaScript modules, and manages all the interactions with the OpenAI API.
+The library automatically loads and executes functions defined in separate JavaScript modules and manages all the interactions with the OpenAI API.
 
 ## Installation
 
@@ -19,6 +19,8 @@ yarn add ai-function-chain
 ```
 
 ## Setup
+
+In order to use FunctionChain, you need to have an API key from OpenAI. If you don't already have one, you can get it from [here](https://platform.openai.com/account/api-keys).
 
 Create a `.env` file in the root of your project and add your OpenAI API Key:
 
