@@ -1,3 +1,7 @@
+## Demo
+
+![Demonstration](https://i.imgur.com/nHp7uRq.gif)
+
 ## Installation
 
 1. Install the package using npm or yarn:
