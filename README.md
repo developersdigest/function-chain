@@ -1,7 +1,7 @@
 ## Demo
 
 ![Demonstration](https://i.imgur.com/nHp7uRq.gif)
-
+[YouTube link: FunctionChain: OpenAI Function Calling Simplified in Node.js](https://youtu.be/jmrFG7n3Nt8)
 ## Installation
 
 1. Install the package using npm or yarn:
