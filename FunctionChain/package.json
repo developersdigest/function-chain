@@ -1,0 +1,29 @@
+{
+  "name": "ai-function-chain",
+  "version": "0.0.26",
+  "description": "A package for executing function calling with OpenAI",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/developersdigest/FunctionChain"
+  },
+  "keywords": [
+    "openai",
+    "langchain",
+    "functionChain",
+    "AI",
+    "function calling",
+    "NLP",
+    "natural language processing",
+    "programming",
+    "developer",
+    "code execution",
+    "automation",
+    "artificial intelligence",
+    "machine learning"
+  ],
+  "author": "Developers Digest",
+  "license": "MIT",
+  "type": "module",
+  "readme": "README.md"
+}
