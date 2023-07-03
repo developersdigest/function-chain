@@ -1,3 +1,4 @@
+// Still working on this function...
 // Import required packages
 import { PineconeClient } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
