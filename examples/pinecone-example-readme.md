@@ -31,32 +31,26 @@ PINECONE_ENVIRONMENT=<your_environment>
 PINECONE_INDEX=<your_index_name>  # This is optional
 ```
 
-## Code Examples
+## Code Example
 
 Here are some example usage of Pinecone:
 
 ```javascript
-// Example 1: Checking if a Pinecone index exists or creating a new one
-import { PineconeClient } from "@pinecone-database/pinecone";
+import { FunctionChain } from "ai-function-chain";
 
-export const execute = async (options) => {
-    //...
-    // Refer to the full example provided above
-    //...
-};
-```
+const PineconeChain = new FunctionChain({
+  functionArray: ["createPineconeIndex", "updatePinecone"],
+});
 
-```javascript
-// Example 2: Updating a Pinecone index with vector embeddings from a given text
-import { PineconeClient } from "@pinecone-database/pinecone";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+const create = await PineconeChain.call(
+  "Create a pinecone index called bookshelf"
+);
+console.log(create)
 
-export const execute = async ({ text, indexName: paramIndexName, source }) => {
-    //...
-    // Refer to the full example provided above
-    //...
-};
+const update = await PineconeChain.call(
+  "Add this info my pinecone index called bookshelf. With the following: This is an example of where you can fill in the text you want to be processed. The source for this is 'example.com'"
+);
+console.log(update);
 ```
 
 ## Notes
