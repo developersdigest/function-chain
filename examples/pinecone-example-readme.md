@@ -38,13 +38,13 @@ Here are some example usage of Pinecone:
 ```javascript
 import { FunctionChain } from "ai-function-chain";
 
-const PineconeChain = new FunctionChain({
-  functionArray: ["createPineconeIndex", "updatePinecone"],
-});
+const pineconeChain = new FunctionChain();
 
-const create = await PineconeChain.call("Create a pinecone index called bookshelf");
-const update = await PineconeChain.call("Add this info my pinecone index called bookshelf. With the following: This is an example of where you can fill in the text you want to be processed. The source for this is 'example.com'");
-console.log(create, update);
+const create = await pineconeChain.call("Create an index called bookshelf");
+const update = await pineconeChain.call("Add 'The goose is named Joe' to the bookshelf index");
+const ask = await pineconeChain.call("What is the name of the goose in the bookshelf index?");
+
+console.log(`1. ${create} \n 2. ${update} \n 3. ${ask}`);
 ```
 
 ## Notes
