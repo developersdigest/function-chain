@@ -2,6 +2,7 @@
 
 ![Demonstration](https://i.imgur.com/nHp7uRq.gif)
 [YouTube link: FunctionChain: OpenAI Function Calling Simplified in Node.js](https://youtu.be/jmrFG7n3Nt8)
+
 ## Installation
 
 1. Install the package using npm or yarn:
@@ -43,6 +44,13 @@ async function main() {
 }
 
 main();
+```
+## Running Your Project
+
+After setting up `index.js` and adding your functions, run your project using:
+
+```bash
+npm run dev
 ```
 
 ## Customization
@@ -137,10 +145,4 @@ console.log(res1, res2, res3, res4, res5, res6, res7);
 // To make these calls work, please replace the placeholder API key in the .env file
 // with your own API key obtained from Alpha Vantage.
 ```
-## Running Your Project
 
-After setting up `index.js` and adding your functions, run your project using:
-
-```bash
-npm run dev
-```
