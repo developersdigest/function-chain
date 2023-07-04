@@ -109,19 +109,25 @@ In this example, we limit the functions available to the `FunctionChain` instanc
 ```javascript
 import { FunctionChain } from "ai-function-chain";
 
+// By passing in no options, the default FunctionChain instance will use all available functions within the core FunctionChain library.
+// Note that it will not include any custom functions unless a directory is explicitly passed.
+
 const functionChain = new FunctionChain();
 
-// Only "getAlphaVantageCompanyOverview" function is initially available to the FunctionChain instance
-const scopedFunctionChain = new FunctionChain({ functionArray: ["getAlphaVantageCompanyOverview"] });
-
-// These calls will use the default FunctionChain instance
+// The below invocations will use all functions in the functions directory to try to answer the question
 const res1 = functionChain.call("Get me the latest price of Bitcoin");
 const res2 = functionChain.call("Open the calculator on my computer");
 const res3 = functionChain.call("Get me the latest price of Ethereum");
 
-// These calls will use the scopedFunctionChain instance that only passes "getAlphaVantageCompanyOverview" function to OpenAI to use
-const res4 = scopedFunctionChain.call("What is Apple's market capitalization");
-const res5 = scopedFunctionChain.call("What is Microsoft's PE Ratio");
+// The below invocations will use the specified functions to try to answer the question
+const res4 = functionChain.call("What is Apple's market capitalization", { functionArray: ["getAlphaVantageCompanyOverview"] });
+const res5 = functionChain.call("Get me the latest price of Bitcoin", { functionArray: ["fetchCryptoPrices"] });
+
+// Alternatively, you can create a scoped FunctionChain instance like this to use an array of functions for all calls made with a FunctionChain instance
+const scopedFunctionChain = new FunctionChain({ functionArray: ["getAlphaVantageCompanyOverview"] });
+
+// These calls will use the scoped FunctionChain instance
+// which includes only the "getAlphaVantageCompanyOverview" function
 const res6 = scopedFunctionChain.call("What is Amazon's Revenue (TTM)");
 const res7 = scopedFunctionChain.call("What is Alphabet's EBITDA");
 
@@ -130,7 +136,6 @@ console.log(res1, res2, res3, res4, res5, res6, res7);
 // Note: The calls from res4 to res7 require a free API key from Alpha Vantage.
 // To make these calls work, please replace the placeholder API key in the .env file
 // with your own API key obtained from Alpha Vantage.
-
 ```
 ## Running Your Project
 
