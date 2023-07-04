@@ -120,8 +120,8 @@ const res2 = functionChain.call("Open the calculator on my computer");
 const res3 = functionChain.call("Get me the latest price of Ethereum");
 
 // The below invocations will use the specified functions to try to answer the question
+const res4 = functionChain.call("Get me the latest price of Bitcoin", { functionArray: ["fetchCryptoPrices"] });
 const res4 = functionChain.call("What is Apple's market capitalization", { functionArray: ["getAlphaVantageCompanyOverview"] });
-const res5 = functionChain.call("Get me the latest price of Bitcoin", { functionArray: ["fetchCryptoPrices"] });
 
 // Alternatively, you can create a scoped FunctionChain instance like this to use an array of functions for all calls made with a FunctionChain instance
 const scopedFunctionChain = new FunctionChain({ functionArray: ["getAlphaVantageCompanyOverview"] });
@@ -133,7 +133,7 @@ const res7 = scopedFunctionChain.call("What is Alphabet's EBITDA");
 
 console.log(res1, res2, res3, res4, res5, res6, res7);
 
-// Note: The calls from res4 to res7 require a free API key from Alpha Vantage.
+// Note: The calls from res5 to res7 require a free API key from Alpha Vantage.
 // To make these calls work, please replace the placeholder API key in the .env file
 // with your own API key obtained from Alpha Vantage.
 ```
