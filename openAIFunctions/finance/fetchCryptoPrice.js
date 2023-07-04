@@ -1,17 +1,33 @@
-import { FunctionChain } from "ai-function-chain";
-
-const functionChain = new FunctionChain();
-
-async function main() {
-    const res1 = await functionChain.call("Get me the latest price of Bitcoin");
-    const res2 = await functionChain.call("Open the calculator on my computer");
-    const res3 = await functionChain.call("Get me the latest price of Ethereum", {
-        functionArray: ["fetchCryptoPrice"] // Optionally specify which functions to use
-    });
-    const res4 = await functionChain.call("Take a screenshot.");
-    const res5 = await functionChain.call("What was apple's revenue in the last year?");
-
-    console.log(res1, res2, res3, res4, res5);
-}
-
-main();
+// 1. Write Function Code Within Execute Function
+export const execute = async (options) => {
+  const { cryptoName, vsCurrency } = options;
+  try {
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoName.toString()}&vs_currencies=${vsCurrency.toString()}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return String(data[cryptoName.toLowerCase()][vsCurrency.toLowerCase()]);
+  } catch (error) {
+    console.error(`Error fetching ${cryptoName} price:`, error);
+    throw error;
+  }
+};
+// 2. Add Function Details for LLM to use
+export const details = {
+  name: 'fetchCryptoPrice',
+  description: 'Fetches the price of a cryptocurrency from CoinGecko',
+  parameters: {
+    type: 'object',
+    properties: {
+      cryptoName: {
+        type: 'string',
+        description: 'The name of the cryptocurrency',
+      },
+      vsCurrency: {
+        type: 'string',
+        description: 'The target currency to compare the cryptocurrency price against',
+      },
+    },
+    required: ['cryptoName', 'vsCurrency'],
+  },
+  example: 'Get the current price of Bitcoin in USD',
+};
