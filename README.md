@@ -102,23 +102,35 @@ export const details = {
 
 These examples demonstrate how to limit the functions available in the `FunctionChain` instance by passing a `functionArray` during instantiation.
 
-### Example 1: Limited FunctionChain Instance
+### Example 1: Scoped FunctionChain Instance
 
 In this example, we limit the functions available to the `FunctionChain` instance to only the `getAlphaVantageCompanyOverview` function:
 
 ```javascript
 import { FunctionChain } from "ai-function-chain";
 
+const functionChain = new FunctionChain();
+
 // Only "getAlphaVantageCompanyOverview" function is initially available to the FunctionChain instance
-const functionChain = new FunctionChain({ functionArray: ["getAlphaVantageCompanyOverview"] });
+const scopedFunctionChain = new FunctionChain({ functionArray: ["getAlphaVantageCompanyOverview"] });
 
-// These calls will only use the "getAlphaVantageCompanyOverview" function to fetch data
-const res1 = await functionChain.call("What is Apple's market capitalization");
-const res2 = await functionChain.call("What is Microsoft's PE Ratio");
-const res3 = await functionChain.call("What is Amazon's Revenue (TTM)");
-const res4 = await functionChain.call("What is Alphabet's EBITDA");
+// These calls will use the default FunctionChain instance
+const res1 = functionChain.call("Get me the latest price of Bitcoin");
+const res2 = functionChain.call("Open the calculator on my computer");
+const res3 = functionChain.call("Get me the latest price of Ethereum");
 
-console.log(res1, res2, res3, res4);
+// These calls will use the scopedFunctionChain instance that only passes "getAlphaVantageCompanyOverview" function to OpenAI to use
+const res4 = scopedFunctionChain.call("What is Apple's market capitalization");
+const res5 = scopedFunctionChain.call("What is Microsoft's PE Ratio");
+const res6 = scopedFunctionChain.call("What is Amazon's Revenue (TTM)");
+const res7 = scopedFunctionChain.call("What is Alphabet's EBITDA");
+
+console.log(res1, res2, res3, res4, res5, res6, res7);
+
+// Note: The calls from res4 to res7 require a free API key from Alpha Vantage.
+// To make these calls work, please replace the placeholder API key in the .env file
+// with your own API key obtained from Alpha Vantage.
+
 ```
 ## Running Your Project
 
