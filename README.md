@@ -82,7 +82,7 @@ console.log(res1, res2, res3);
 
 Here are some examples of how you can use FunctionChain:
 
-**Example 1: Unix Example (No additonal API Key Require) ** 
+**Example 1: Unix Example (No additonal API Key Require)** 
 
 ```javascript
 import { FunctionChain } from "ai-function-chain";
@@ -105,7 +105,7 @@ const res2 = await functionChain.call("Get me the latest price of Ethereum");
 console.log(`1. ${res1} \n2. ${res2}`);
 ```
 
-**Example 3: Pinecone Example (Pinecone API Key Require) **
+**Example 3: Pinecone Example (Pinecone API Key Require)**
 
 ```javascript
 import { FunctionChain } from "ai-function-chain";
@@ -121,7 +121,7 @@ const ask = await functionChain.call("Do I have any paperclip to-do's in my ai-j
 console.log(`1. ${create} \n2. ${update} \n3. ${ask}`);
 ```
 
-**Example 4: Alpha Vantage API (Free API Key Require) **
+**Example 4: Alpha Vantage API (Free API Key Require)**
 
 ```javascript
 import { FunctionChain } from "ai-function-chain";
