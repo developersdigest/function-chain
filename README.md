@@ -52,65 +52,7 @@ After setting up `index.js` and adding your functions, run your project using:
 ```bash
 npm run dev
 ```
-
-## Customization
-
-You can customize FunctionChain instance by specifying different OpenAI model and a custom directory for your function modules:
-
-```javascript
-const initOptions = {
-  openaiOptions: {
-    model: "gpt-3.5-turbo-0613", // specify a different model if needed
-  },
-  functionsDirectory: "./myFunctions", // specify a custom directory if you have one
-};
-
-const functionChain = new FunctionChain(initOptions);
-```
-
-## Adding Custom Functions
-
-1. Create a new JavaScript file for your function in the `functionsDirectory` specified while creating the `FunctionChain` instance.
-2. Follow the following pattern to define your function:
-
-```javascript
-import { exec } from 'child_process';
-
-export const execute = (options) => {
-    const { appName } = options;
-    return new Promise((resolve, reject) => {
-        exec(`open -a "${appName}"`, (error, stdout, stderr) => {
-            if (error) {
-                console.warn(error);
-                reject(`Error opening ${appName}: ${error.message}`);
-            }
-            resolve(`${appName} opened successfully.`);
-        });
-    });
-}
-
-export const details = {
-    name: "openApp",
-    description: "Opens a specified application on your computer",
-    parameters: {
-        type: "object",
-        properties: {
-            appName: {
-                type: "string",
-                description: "The name of the application to open"
-            },
-        },
-        required: ["appName"],
-    },
-    example: "Open the 'Calculator' application"
-};
-```
-
-## Examples
-
-These examples demonstrate how to limit the functions available in the `FunctionChain` instance by passing a `functionArray` during instantiation.
-
-### Example 1: Scoped FunctionChain Instance
+## Scoped FunctionChain Instance
 
 In this example, we limit the functions available to the `FunctionChain` instance to only the `getAlphaVantageCompanyOverview` function:
 
@@ -145,4 +87,3 @@ console.log(res1, res2, res3, res4, res5, res6, res7);
 // To make these calls work, please replace the placeholder API key in the .env file
 // with your own API key obtained from Alpha Vantage.
 ```
-
