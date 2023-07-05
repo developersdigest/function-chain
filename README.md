@@ -1,6 +1,6 @@
 ## Demo
 
-![Demonstration](https://i.imgur.com/nHp7uRq.gif](https://i.imgur.com/aFpv4iu.gif))
+![Demonstration](https://i.imgur.com/aFpv4iu.gif)
 [YouTube link: FunctionChain: OpenAI Function Calling Simplified in Node.js](https://youtu.be/jmrFG7n3Nt8)
 
 ## Installation
