@@ -173,7 +173,26 @@ Alternatively, you can run the following:
 node examples/alpha-vantage-examples.js
 ```
 
-**Example 5: Visual Crossing API (API Key Required)**
+
+**Example 5: Huggingface Inference (Free API Key Required)**
+
+You can get your Alpha Vantage API key [here](https://huggingface.co/settings/tokens) (A read only token)
+
+```javascript
+import { FunctionChain } from "ai-function-chain";
+
+const functionChain = new FunctionChain({functionArray: ["huggingFaceImageClassification"]}); 
+
+const res = await functionChain.call("What is this image? https://www.shutterstock.com/image-photo/yellow-lovebird-sitting-alone-on-260nw-1894954309.jpg");
+
+console.log(res);
+```
+Alternatively, you can run the following:
+```bash
+node examples/hugging-face-example.js
+```
+
+**Example 6: Visual Crossing API (API Key Required)**
 
 You can get your Visual Crossing API key [here](https://www.visualcrossing.com/weather-api)
 
