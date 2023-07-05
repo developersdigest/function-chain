@@ -6,15 +6,15 @@ This is a brief guide to get you started with the `FunctionChain` library.
 
 1. Install the package using npm:
 
-    ```
-    npm install ai-function-chain
-    ```
+```bash
+npm install ai-function-chain
+```
 
 2. Rename the `.env.example` to `.env` at the root of your project. Obtain your OpenAI API Key from [here](https://platform.openai.com/account/api-keys), and add it to the `.env` file:
 
-    ```
-    OPENAI_API_KEY=your_openai_api_key
-    ```
+```bash
+OPENAI_API_KEY=your_openai_api_key
+```
 
 ## Setup
 
@@ -41,9 +41,9 @@ console.log(res1, res2, res3);
 
 After setting up `index.js` and adding your functions, run your project using:
 
-    ```
-    npm run dev
-    ```
+```bash
+npm run dev
+```
 
 ## Examples
 
