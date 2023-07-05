@@ -15,10 +15,12 @@ export class FunctionChain {
       "Content-Type": "application/json",
       Authorization: "Bearer " + process.env.OPENAI_API_KEY,
     };
+    this.functionArray = initOptions.functionArray;
+
     this.functionsDirectory = initOptions.functionsDirectory || path.resolve(__dirname, 'openAIFunctions');
   }
   async call(message, options = {}) {
-    let functionArray = options.functionArray;
+    let functionArray = this.functionArray || options.functionArray;
     const openAIFunctions = await this.getFunctions();
     if (!functionArray) {
       functionArray = Object.keys(openAIFunctions);
@@ -32,7 +34,7 @@ export class FunctionChain {
       }
     }
     const functionNames = functionArray.join(", ");
-    console.log(`Using functions: ${functionNames}`)
+    // console.log(`Using functions the following functions: ${functionNames}`)
     let data = {
       messages: [
         {
@@ -47,7 +49,7 @@ export class FunctionChain {
       function_call: "auto",
     };
     try {
-      console.log(`Sending request of "${message}" to OpenAI...`);
+      // console.log(`Sending request of "${message}" to OpenAI...`);
       let response = await fetch(this.baseURL, {
         method: "POST",
         headers: this.headers,
@@ -69,8 +71,8 @@ export class FunctionChain {
         if (functionMap.hasOwnProperty(function_name)) {
           const functionArgs = JSON.parse(message.function_call.arguments);
           const functionToExecute = functionMap[function_name];
-          console.log(`Executing function: ${function_name}...`)
           function_response = await functionToExecute.execute(functionArgs);
+          // console.log(`Function response: ${function_response}`)
         } else {
           throw new Error(`Unsupported function: ${function_name}, ensure function name within description matches the javascript file name i.e. latestPrices.js should have a name: 'latestPrices' within the details object`);
         }
