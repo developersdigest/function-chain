@@ -188,7 +188,7 @@ console.log(res1);
 ```
 Alternatively, you can run the following:
 ```bash
-node examples/visual-crossing-example.js
+node examples/weather-visual-crossing-example.js
 ```
 
 # Contribution
