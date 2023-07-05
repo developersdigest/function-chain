@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ai-function-chain": "^0.0.39",
+    "ai-function-chain": "^0.0.40",
     "dotenv": "^16.3.1"
   },
   "type": "module"

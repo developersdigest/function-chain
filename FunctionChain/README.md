@@ -1,3 +1,6 @@
+![Image](https://i.imgur.com/aFpv4iu.gif)
+[FunctionChain: OpenAI Function Calling Simplified in Node.js](https://youtu.be/jmrFG7n3Nt8)
+
 # Quickstart
 
 This guide will walk you through the basic steps required to get the `FunctionChain` library up and running.

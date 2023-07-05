@@ -1,6 +1,6 @@
 {
   "name": "ai-function-chain",
-  "version": "0.0.40",
+  "version": "0.0.42",
   "description": "The FunctionChain is a tool that simplifies and organizes the process of invoking OpenAI functions in your Node.js applications. With this toolkit, you can easily scaffold out and isolate all the OpenAI function calls you need, making your code more modular, maintainable, and scalable.",
   "main": "index.js",
   "repository": {
@@ -28,7 +28,6 @@
   "readme": "README.md",
   "dependencies": {
     "@pinecone-database/pinecone": "^0.1.6",
-    "ai-function-chain": "^0.0.38",
     "dotenv": "^16.3.1",
     "langchain": "^0.0.102"
   }

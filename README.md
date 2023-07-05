@@ -1,3 +1,6 @@
+![Image](https://i.imgur.com/aFpv4iu.gif)
+[FunctionChain: OpenAI Function Calling Simplified in Node.js](https://youtu.be/jmrFG7n3Nt8)
+
 # Quickstart
 
 This guide will walk you through the basic steps required to get the `FunctionChain` library up and running.
@@ -29,14 +32,13 @@ OPENAI_API_KEY=your_openai_api_key
 node index.js
 ```
 
-
 ## API Keys
 
 To use `FunctionChain`, you must obtain and provide the appropriate API keys. 
 
 For all functions:
 
-```
+```bash
 OPENAI_API_KEY=your_openai_api_key
 ```
 
@@ -46,7 +48,7 @@ If you intend to use specific functions, you need to obtain the respective API k
 
 **For Alpha Vantage functions:**
 
-```
+```bash
 ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key
 ```
 
@@ -54,7 +56,7 @@ Get your Alpha Vantage API key [here](https://www.alphavantage.co/support/#api-k
 
 **For Pinecone functions:**
 
-```
+```bash
 PINECONE_API_KEY=your_pinecone_api_key
 PINECONE_ENVIRONMENT=your_pinecone_environment
 PINECONE_INDEX=your_pinecone_index
@@ -64,7 +66,7 @@ Get your Pinecone API key [here](https://docs.pinecone.io/docs/node-client)
 
 **For Visual Crossing API functions:**
 
-```
+```bash
 VISUAL_CROSSING_API_KEY=your_visual_crossing_api_key
 ```
 
@@ -92,12 +94,11 @@ const res3 = await functionChain.call("Get me the latest price of Ethereum", {
 console.log(res1, res2, res3);
 ```
 
-
 ## Examples
 
 Here are some examples of how you can use FunctionChain:
 
-**Example 1: Unix Example (No additonal API Key Require)** 
+**Example 1: Unix Example (No additional API Key Required)** 
 
 ```javascript
 import { FunctionChain } from "ai-function-chain";
@@ -111,6 +112,7 @@ Alternatively, you can run the following:
 ```bash
 node examples/unix-example.js
 ```
+
 **Example 2: Crypto Prices (No API Key Required)**
 
 ```javascript
@@ -127,7 +129,10 @@ Alternatively, you can run the following:
 ```bash
 node examples/no-api-key-example.js
 ```
-**Example 3: Pinecone Example (Pinecone API Key Require)**
+
+**Example 3: Pinecone Example (Pinecone API Key Required)**
+
+You can get your Pinecone API Key [here](https://docs.pinecone.io/docs/node-client)
 
 ```javascript
 import { FunctionChain } from "ai-function-chain";
@@ -146,7 +151,10 @@ Alternatively, you can run the following:
 ```bash
 node examples/pinecone-example.js
 ```
-**Example 4: Alpha Vantage API (Free API Key Require)**
+
+**Example 4: Alpha Vantage API (Free API Key Required)**
+
+You can get your Alpha Vantage API key [here](https://www.alphavantage.co/support/#api-key)
 
 ```javascript
 import { FunctionChain } from "ai-function-chain";
@@ -164,6 +172,25 @@ Alternatively, you can run the following:
 ```bash
 node examples/alpha-vantage-examples.js
 ```
+
+**Example 5: Visual Crossing API (API Key Required)**
+
+You can get your Visual Crossing API key [here](https://www.visualcrossing.com/weather-api)
+
+```javascript
+import { FunctionChain } from "ai-function-chain";
+
+const functionChain = new FunctionChain({functionArray: ["getVisualCrossingWeatherForecast"]});
+
+const res1 = await functionChain.call("What's the weather this week in Toronto");
+
+console.log(res1);
+```
+Alternatively, you can run the following:
+```bash
+node examples/visual-crossing-example.js
+```
+
 # Contribution
 
 Contributions to the `FunctionChain` library are more than welcome! If you have any helpful functions you'd like to contribute, or if there's a library you'd like to see integrated with `FunctionChain`, please feel free to reach out or submit a pull request.
