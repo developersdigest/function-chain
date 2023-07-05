@@ -1,20 +1,34 @@
 # Quickstart
 
-This is a brief guide to get you started with the `FunctionChain` library.
+This guide will walk you through the basic steps required to get the `FunctionChain` library up and running.
 
 ## Installation
 
-1. Install the package using npm:
+1. First of all, you need to clone the repository to your local machine:
 
 ```bash
-npm install ai-function-chain
+git clone https://github.com/developersdigest/FunctionChain
 ```
 
-2. Rename the `.env.example` to `.env` at the root of your project. Obtain your OpenAI API Key from [here](https://platform.openai.com/account/api-keys), and add it to the `.env` file:
+2. Move to the directory where the repository has been cloned and install the necessary dependencies using npm:
+
+```bash
+cd FunctionChain
+npm install
+```
+
+3. Rename the `.env.example` to `.env` at the root of your project. Obtain your OpenAI API Key from [here](https://platform.openai.com/account/api-keys), and add it to the `.env` file:
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key
 ```
+
+4. After setting up `index.js` and adding your functions, run your project using:
+
+```bash
+node index.js
+```
+
 
 
 ## API Keys
@@ -62,14 +76,6 @@ const res3 = await functionChain.call("Get me the latest price of Ethereum", {
     functionArray: ["fetchCryptoPrice"] // Optionally specify which functions to use
 });
 console.log(res1, res2, res3);
-```
-
-## Running Your Project
-
-After setting up `index.js` and adding your functions, run your project using:
-
-```bash
-npm run dev
 ```
 
 ## Examples
@@ -140,4 +146,4 @@ You can contribute in several ways:
 - **Open an issue**: If you've identified a bug or have a feature request, you can open an issue on the GitHub repository.
 - **Get in touch**: If you have ideas or questions, feel free to reach out directly. Your feedback and ideas are invaluable in continuing to improve `FunctionChain`.
 
-I'm excited to see how you use `FunctionChain` and to hear your ideas for improvements!
+We're excited to see how you use `FunctionChain` and to hear your ideas for improvements!
