@@ -44,17 +44,24 @@ OPENAI_API_KEY=your_openai_api_key
 
 - If you intend to use the Alpha Vantage or Pinecone functions, you need to obtain their respective API keys:
 
+## OPTIONAL: API keys below are only required for specific functions
+
+Get your API key at [https://www.alphavantage.co/support/#api-key](https://www.alphavantage.co/support/#api-key)
+
 ```bash
-# OPTIONAL: API keys below are only required for specific functions
-
-# Get your API key at https://www.alphavantage.co/support/#api-key
-# ALPHA_VANTAGE_API_KEY=APIKEYGOESHERE
-
-# TO USE WITH PINECONE FUNCTIONS: Get API Key here: https://docs.pinecone.io/docs/node-client
-# PINECONE_API_KEY=PINECONEAPIKEYGOESHERE
-# PINECONE_ENVIRONMENT=ENVIRONMENTGOESHERE
-# PINECONE_INDEX=INDEXGOESHERE
+ALPHA_VANTAGE_API_KEY=APIKEYGOESHERE
 ```
+
+### TO USE WITH PINECONE FUNCTIONS
+
+Get API Key here: [https://docs.pinecone.io/docs/node-client](https://docs.pinecone.io/docs/node-client)
+
+```bash
+PINECONE_API_KEY=PINECONEAPIKEYGOESHERE
+PINECONE_ENVIRONMENT=ENVIRONMENTGOESHERE
+PINECONE_INDEX=INDEXGOESHERE
+```
+
 
 
 ## Setup
