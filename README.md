@@ -16,6 +16,33 @@ npm install ai-function-chain
 OPENAI_API_KEY=your_openai_api_key
 ```
 
+
+## API Keys
+
+To use `FunctionChain`, you must obtain and provide the appropriate API keys. 
+
+- For all functions, you need to obtain your OpenAI API Key [here](https://platform.openai.com/account/api-keys) and add it to the `.env` file:
+
+```bash
+# REQUIRED:
+OPENAI_API_KEY=your_openai_api_key
+```
+
+- If you intend to use the Alpha Vantage or Pinecone functions, you need to obtain their respective API keys:
+
+```bash
+# OPTIONAL: API keys below are only required for specific functions
+
+# Get your API key at https://www.alphavantage.co/support/#api-key
+# ALPHA_VANTAGE_API_KEY=APIKEYGOESHERE
+
+# TO USE WITH PINECONE FUNCTIONS: Get API Key here: https://docs.pinecone.io/docs/node-client
+# PINECONE_API_KEY=PINECONEAPIKEYGOESHERE
+# PINECONE_ENVIRONMENT=ENVIRONMENTGOESHERE
+# PINECONE_INDEX=INDEXGOESHERE
+```
+
+
 ## Setup
 
 To setup `FunctionChain`, follow the steps below:
@@ -88,5 +115,14 @@ const res2 = await functionChain.call("Get me the latest price of Ethereum");
 
 console.log(`1. ${res1} \n2. ${res2}`);
 ```
+# Contribution
 
+Contributions to the `FunctionChain` library are more than welcome! If you have any helpful functions you'd like to contribute, or if there's a library you'd like to see integrated with `FunctionChain`, please feel free to reach out or submit a pull request.
 
+You can contribute in several ways:
+
+- **Submit a pull request**: If you've written any functions that you'd like to share with the community, you can submit a pull request on the GitHub repository.
+- **Open an issue**: If you've identified a bug or have a feature request, you can open an issue on the GitHub repository.
+- **Get in touch**: If you have ideas or questions, feel free to reach out directly. Your feedback and ideas are invaluable in continuing to improve `FunctionChain`.
+
+We're excited to see how you use `FunctionChain` and to hear your ideas for improvements!
