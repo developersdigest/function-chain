@@ -30,39 +30,45 @@ node index.js
 ```
 
 
-
 ## API Keys
 
 To use `FunctionChain`, you must obtain and provide the appropriate API keys. 
 
-- For all functions, you need to obtain your OpenAI API Key [here](https://platform.openai.com/account/api-keys) and add it to the `.env` file:
+For all functions:
 
-```bash
-# REQUIRED:
+```
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-- If you intend to use the Alpha Vantage or Pinecone functions, you need to obtain their respective API keys:
+You need to obtain your OpenAI API Key [here](https://platform.openai.com/account/api-keys) and add it to the `.env` file.
 
-## OPTIONAL: API keys below are only required for specific functions
+If you intend to use specific functions, you need to obtain the respective API keys:
 
-Get your API key at [https://www.alphavantage.co/support/#api-key](https://www.alphavantage.co/support/#api-key)
+**For Alpha Vantage functions:**
 
-```bash
-ALPHA_VANTAGE_API_KEY=APIKEYGOESHERE
+```
+ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key
 ```
 
-### TO USE WITH PINECONE FUNCTIONS
+Get your Alpha Vantage API key [here](https://www.alphavantage.co/support/#api-key)
 
-Get API Key here: [https://docs.pinecone.io/docs/node-client](https://docs.pinecone.io/docs/node-client)
+**For Pinecone functions:**
 
-```bash
-PINECONE_API_KEY=PINECONEAPIKEYGOESHERE
-PINECONE_ENVIRONMENT=ENVIRONMENTGOESHERE
-PINECONE_INDEX=INDEXGOESHERE
+```
+PINECONE_API_KEY=your_pinecone_api_key
+PINECONE_ENVIRONMENT=your_pinecone_environment
+PINECONE_INDEX=your_pinecone_index
 ```
 
+Get your Pinecone API key [here](https://docs.pinecone.io/docs/node-client)
 
+**For Visual Crossing API functions:**
+
+```
+VISUAL_CROSSING_API_KEY=your_visual_crossing_api_key
+```
+
+Get your Visual Crossing API key [here](https://www.visualcrossing.com/weather-api)
 
 ## Setup
 
