@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ai-function-chain": "^0.0.40",
+    "@huggingface/inference": "^1.8.0",
+    "ai-function-chain": "^0.0.44",
     "dotenv": "^16.3.1"
   },
   "type": "module"
