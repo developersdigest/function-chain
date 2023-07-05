@@ -79,6 +79,7 @@ const res3 = await functionChain.call("Get me the latest price of Ethereum", {
 console.log(res1, res2, res3);
 ```
 
+
 ## Examples
 
 Here are some examples of how you can use FunctionChain:
@@ -93,6 +94,10 @@ const functionChain = new FunctionChain();
 const res = await functionChain.call("Open the calculator on my computer");
 console.log(res);
 ```
+Alternatively, you can run the following:
+```bash
+node examples/unix-example.js
+```
 **Example 2: Crypto Prices (No API Key Required)**
 
 ```javascript
@@ -105,7 +110,10 @@ const res2 = await functionChain.call("Get me the latest price of Ethereum");
 
 console.log(`1. ${res1} \n2. ${res2}`);
 ```
-
+Alternatively, you can run the following:
+```bash
+node examples/no-api-key-example.js
+```
 **Example 3: Pinecone Example (Pinecone API Key Require)**
 
 ```javascript
@@ -121,7 +129,10 @@ const ask = await functionChain.call("Do I have any paperclip to-do's in my ai-j
 
 console.log(`1. ${create} \n2. ${update} \n3. ${ask}`);
 ```
-
+Alternatively, you can run the following:
+```bash
+node examples/pinecone-example.js
+```
 **Example 4: Alpha Vantage API (Free API Key Require)**
 
 ```javascript
@@ -136,7 +147,10 @@ const res4 = await functionChain.call("What is Alphabet's EBITDA");
 
 console.log(`1. ${res1} \n2. ${res2} \n3. ${res3} \n4. ${res4}`);
 ```
-
+Alternatively, you can run the following:
+```bash
+node examples/alpha-vantage-examples.js
+```
 # Contribution
 
 Contributions to the `FunctionChain` library are more than welcome! If you have any helpful functions you'd like to contribute, or if there's a library you'd like to see integrated with `FunctionChain`, please feel free to reach out or submit a pull request.
