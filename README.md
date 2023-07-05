@@ -36,7 +36,7 @@ node index.js
 
 To use `FunctionChain`, you must obtain and provide the appropriate API keys. 
 
-For all functions:
+REQUIRED: or all functions:
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key
@@ -44,7 +44,7 @@ OPENAI_API_KEY=your_openai_api_key
 
 You need to obtain your OpenAI API Key [here](https://platform.openai.com/account/api-keys) and add it to the `.env` file.
 
-If you intend to use specific functions, you need to obtain the respective API keys:
+OPTIONAL: If you intend to use specific functions, you need to obtain the respective API keys:
 
 **For Alpha Vantage functions:**
 
