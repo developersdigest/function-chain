@@ -222,4 +222,4 @@ You can contribute in several ways:
 - **Open an issue**: If you've identified a bug or have a feature request, you can open an issue on the GitHub repository.
 - **Get in touch**: If you have ideas or questions, feel free to reach out directly. Your feedback and ideas are invaluable in continuing to improve `FunctionChain`.
 
-We're excited to see how you use `FunctionChain` and to hear your ideas for improvements!
+I am excited to see how you use `FunctionChain` and to hear your ideas for improvements!
