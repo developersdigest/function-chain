@@ -26,10 +26,12 @@ npm install
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-4. After setting up you can run with the example in `index.js` and adding your functions, run your project using:
+4. Now you can run with the example in `index.js` by using:
 
 ```bash
 node index.js
+or
+npm run dev
 ```
 
 ## API Keys
