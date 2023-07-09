@@ -43,15 +43,18 @@ To setup `FunctionChain`, follow the steps below:
 3. Call the `call` method with a message. Optionally, you can specify a set of functions to execute.
 
 ```javascript
-import { FunctionChain } from "ai-function-chain";
+import { FunctionChain, fetchCryptoPrice, openApp } from "ai-function-chain";
 
-const functionChain = new FunctionChain();
-
-const res1 = await functionChain.call("Get me the latest price of Bitcoin");
-const res2 = await functionChain.call("Open the calculator on my computer");
-const res3 = await functionChain.call("Get me the latest price of Ethereum", {
-    functions: ["fetchCryptoPrice"] // Optionally specify which functions to use
+const functionChain = new FunctionChain({
+  functions: [openApp, fetchCryptoPrice],
 });
+
+const res1 = await functionChain.call("Open the calculator on my computer");
+const res2 = await functionChain.call("Get me the latest price of Bitcoin");
+const res3 = await functionChain.call("Get me the latest price of Ethereum");
+
+console.log(`${res1} \n${res2} \n${res3}`);
+
 
 console.log(`1. ${res1} \n2. ${res2} \n3. ${res3}`);
 ```
