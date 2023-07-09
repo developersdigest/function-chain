@@ -1,7 +1,7 @@
 import { PineconeClient } from "@pinecone-database/pinecone";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 
-export const execute = async ({ indexName = process.env.PINECONE_INDEX, question, namespace }) => {
+const execute = async ({ indexName = process.env.PINECONE_INDEX, question, namespace }) => {
   console.log(`Querying question to Pinecone index: ${question}`);
   const apiKey = process.env.PINECONE_API_KEY;
   const environment = process.env.PINECONE_ENVIRONMENT;
@@ -45,7 +45,7 @@ export const execute = async ({ indexName = process.env.PINECONE_INDEX, question
 };
 
 
-export const details = {
+const details = {
   name: 'askPinecone',
   description: 'This function queries/asks a question to a Pinecone index and returns the top answer. The Pinecone client, index name, and API keys are specified in the .env file or function parameters.',
   parameters: {
@@ -67,4 +67,9 @@ export const details = {
     required: ['question'],
   },
   example: 'Query the Pinecone index with a question.',
+};
+
+export const askPincone = {
+  execute,
+  details,
 };

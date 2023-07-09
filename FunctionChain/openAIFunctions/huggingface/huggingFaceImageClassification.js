@@ -1,7 +1,7 @@
 import { HfInference } from '@huggingface/inference';
 import fetch from 'node-fetch';
 
-export const execute = async (options) => {
+const execute = async (options) => {
   const { imageUrl } = options;
   const apiKey = process.env.HUGGING_FACE_API_KEY;
 
@@ -27,7 +27,7 @@ export const execute = async (options) => {
   }
 };
 
-export const details = {
+const details = {
   name: 'huggingFaceImageClassification',
   description: 'Performs image classification using the Hugging Face Inference API.',
   parameters: {
@@ -41,3 +41,8 @@ export const details = {
   },
   example: 'Classify an image using the Google VIT model',
 };
+export const huggingFaceImageClassification = {
+  execute,
+  details,
+};
+

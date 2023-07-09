@@ -98,7 +98,7 @@ const functionChain = new FunctionChain();
 const res1 = await functionChain.call("Get me the latest price of Bitcoin");
 const res2 = await functionChain.call("Open the calculator on my computer");
 const res3 = await functionChain.call("Get me the latest price of Ethereum", {
-    functionArray: ["fetchCryptoPrice"] // Optionally specify which functions to use
+    functions: ["fetchCryptoPrice"] // Optionally specify which functions to use
 });
 
 console.log(res1, res2, res3);
@@ -169,7 +169,7 @@ You can get your Alpha Vantage API key [here](https://www.alphavantage.co/suppor
 ```javascript
 import { FunctionChain } from "ai-function-chain";
 
-const functionChain = new FunctionChain({functionArray: ["getAlphaVantageCompanyOverview"]});
+const functionChain = new FunctionChain({functions: ["getAlphaVantageCompanyOverview"]});
 
 const res1 = await functionChain.call("What is Apple's market capitalization");
 const res2 = await functionChain.call("What is Microsoft's PE Ratio");
@@ -191,7 +191,7 @@ You can get your Huggingface API key [here](https://huggingface.co/settings/toke
 ```javascript
 import { FunctionChain } from "ai-function-chain";
 
-const functionChain = new FunctionChain({functionArray: ["huggingFaceImageClassification"]}); 
+const functionChain = new FunctionChain({functions: ["huggingFaceImageClassification"]}); 
 
 const res = await functionChain.call("What is this image? https://www.shutterstock.com/image-photo/yellow-lovebird-sitting-alone-on-260nw-1894954309.jpg");
 
@@ -209,7 +209,7 @@ You can get your Visual Crossing API key [here](https://www.visualcrossing.com/w
 ```javascript
 import { FunctionChain } from "ai-function-chain";
 
-const functionChain = new FunctionChain({functionArray: ["getVisualCrossingWeatherForecast"]});
+const functionChain = new FunctionChain({functions: ["getVisualCrossingWeatherForecast"]});
 
 const res1 = await functionChain.call("What's the weather this week in Toronto");
 

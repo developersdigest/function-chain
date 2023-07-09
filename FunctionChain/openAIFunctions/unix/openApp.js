@@ -1,7 +1,7 @@
-// 1. Add Dependencies
+// openApp.js
 import { exec } from 'child_process';
-// 2. Write Function Code Within Execute Function
-export const execute = (options) => {
+
+const execute = (options) => {
     const { appName } = options;
     return new Promise((resolve, reject) => {
         exec(`open -a "${appName}"`, (error, stdout, stderr) => {
@@ -13,8 +13,8 @@ export const execute = (options) => {
         });
     });
 }
-// 3. Add Function Details for LLM to use
-export const details = {
+
+const details = {
     name: "openApp",
     description: "Opens a specified application on your computer",
     parameters: {
@@ -29,3 +29,5 @@ export const details = {
     },
     example: "Open the 'Calculator' application"
 };
+
+export const openApp = { execute, details };

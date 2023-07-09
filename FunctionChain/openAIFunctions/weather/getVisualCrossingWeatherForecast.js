@@ -1,5 +1,4 @@
-// 1. Write Function Code Within Execute Function
-export const execute = async (options) => {
+const execute = async (options) => {
   const { location, startDate, endDate } = options;
   const apiKey = process.env.VISUAL_CROSSING_API_KEY;
 
@@ -34,8 +33,7 @@ export const execute = async (options) => {
   }
 };
 
-// 2. Add Function Details for LLM to use
-export const details = {
+const details = {
   name: 'getVisualCrossingWeatherForecast',
   description: 'Fetches weather forecast for the specified location using the Visual Crossing API. This includes temperature, humidity, wind speed, and other important weather data.',
   parameters: {
@@ -56,4 +54,9 @@ export const details = {
     },
   },
   example: 'Get weather data for the week in Toronto, Canada',
+};
+
+export const getVisualCrossingWeatherForecast = {
+  execute,
+  details,
 };

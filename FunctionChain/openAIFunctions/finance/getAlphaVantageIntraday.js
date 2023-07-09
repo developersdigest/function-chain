@@ -1,4 +1,4 @@
-export const execute = async (options) => {
+const execute = async (options) => {
     const { symbol } = options;
     const apiKey = process.env.ALPHA_VANTAGE_API_KEY;
   
@@ -28,7 +28,7 @@ export const execute = async (options) => {
     }
   };
   
-  export const details = {
+  const details = {
     name: 'getAlphaVantageIntraday',
     description: 'Fetches intraday data for a specified stock without extended hours.',
     parameters: {
@@ -41,5 +41,10 @@ export const execute = async (options) => {
       },
     },
     example: 'Get intraday data for IBM',
+  };
+  
+  export const getAlphaVantageIntraday = {
+    execute,
+    details,
   };
   

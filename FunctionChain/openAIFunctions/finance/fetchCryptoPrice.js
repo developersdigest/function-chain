@@ -1,5 +1,5 @@
 // 1. Write Function Code Within Execute Function
-export const execute = async (options) => {
+const execute = async (options) => {
   const { cryptoName, vsCurrency } = options;
   try {
     const url = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoName.toString()}&vs_currencies=${vsCurrency.toString()}`;
@@ -12,7 +12,7 @@ export const execute = async (options) => {
   }
 };
 // 2. Add Function Details for LLM to use
-export const details = {
+const details = {
   name: 'fetchCryptoPrice',
   description: 'Fetches the price of a cryptocurrency from CoinGecko',
   parameters: {
@@ -30,4 +30,8 @@ export const details = {
     required: ['cryptoName', 'vsCurrency'],
   },
   example: 'Get the current price of Bitcoin in USD',
+};
+export const fetchCryptoPrice = {
+  execute,
+  details,
 };

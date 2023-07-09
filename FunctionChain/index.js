@@ -1,40 +1,34 @@
 import dotenv from "dotenv";
-import { fileURLToPath } from "url";
-import path from "path";
-import fs from "fs";
+import * as allFunctions from './entrypoint.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 dotenv.config();
 
 export class FunctionChain {
   constructor(initOptions = {}) {
-    this.model = initOptions.openaiOptions?.model || "gpt-3.5-turbo-0613";
+    this.model = initOptions.openaiOptions?.model || "gpt-3.5-turbo";
     this.baseURL = "https://api.openai.com/v1/chat/completions";
     this.headers = {
       "Content-Type": "application/json",
       Authorization: "Bearer " + process.env.OPENAI_API_KEY,
     };
-    this.functionArray = initOptions.functionArray;
-
-    this.functionsDirectory = initOptions.functionsDirectory || path.resolve(__dirname, 'openAIFunctions');
+    this.functions = initOptions.functions || Object.values(allFunctions);
   }
   async call(message, options = {}) {
-    let functionArray = this.functionArray || options.functionArray;
-    const openAIFunctions = await this.getFunctions();
-    if (!functionArray) {
-      functionArray = Object.keys(openAIFunctions);
-    } 
-    const functionMap = {};
-    for (const functionName of functionArray) {
-      if (openAIFunctions.hasOwnProperty(functionName)) {
-        functionMap[functionName] = openAIFunctions[functionName];
-      } else {
-        throw new Error(`Unsupported function: ${functionName}`);
-      }
+    let functionMap;
+    if (options.functions && options.functions.length > 0) {
+      functionMap = options.functions.reduce((result, func) => {
+        result[func.details.name] = func;
+        return result;
+      }, {});
+    } else if (this.functions.length > 0) {
+      functionMap = this.functions.reduce((result, func) => {
+        result[func.details.name] = func;
+        return result;
+      }, {});
+    } else {
+      console.warn("No functions were provided. Defaulting to all available functions.");
+      functionMap = await this.getFunctions();
     }
-    const functionNames = functionArray.join(", ");
-    // console.log(`Using functions the following functions: ${functionNames}`)
     let data = {
       messages: [
         {
@@ -42,15 +36,11 @@ export class FunctionChain {
           content: message,
         },
       ],
-      stream: true,
       model: this.model,
-      functions: functionArray.map(
-        (functionName) => openAIFunctions[functionName].details
-      ),
+      functions: Object.values(functionMap).map(func => func.details),
       function_call: "auto",
     };
     try {
-      // console.log(`Sending request of "${message}" to OpenAI...`);
       let response = await fetch(this.baseURL, {
         method: "POST",
         headers: this.headers,
@@ -73,7 +63,6 @@ export class FunctionChain {
           const functionArgs = JSON.parse(message.function_call.arguments);
           const functionToExecute = functionMap[function_name];
           function_response = await functionToExecute.execute(functionArgs);
-          // console.log(`Function response: ${function_response}`)
         } else {
           throw new Error(`Unsupported function: ${function_name}, ensure function name within description matches the javascript file name i.e. latestPrices.js should have a name: 'latestPrices' within the details object`);
         }
@@ -99,28 +88,5 @@ export class FunctionChain {
       console.error("Error:", error);
     }
   }
-  async getFunctions(directory = this.functionsDirectory) {
-    const files = fs.readdirSync(directory);
-    const openAIFunctions = {};
-
-    for (const file of files) {
-      const filePath = path.join(directory, file);
-
-      if (fs.statSync(filePath).isDirectory()) {
-        const nestedFunctions = await this.getFunctions(filePath);
-        Object.assign(openAIFunctions, nestedFunctions);
-      } else if (file.endsWith('.js')) {
-        const moduleName = file.slice(0, -3);
-        const { execute, details } = await import(filePath);
-        openAIFunctions[moduleName] = {
-          execute,
-          details,
-        };
-      }
-    }
-    // Test streaming
-    const stream = OpenAIStream(openAIFunctions)
-    return new StreamingTextResponse(stream)
-    // return openAIFunctions;
-  }
 }
+export * from './entrypoint.js';

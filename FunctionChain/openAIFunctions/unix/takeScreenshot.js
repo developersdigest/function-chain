@@ -2,7 +2,7 @@
 import { exec } from 'child_process';
 
 // 2. Write Function Code Within Execute Function
-export const execute = () => {
+const execute = () => {
     return new Promise((resolve, reject) => {
         exec('screencapture screenshot.png', (error, stdout, stderr) => {
             if (error) {
@@ -15,13 +15,18 @@ export const execute = () => {
 };
 
 // 3. Add Function Details for LLM to use
-export const details = {
+const details = {
     name: "takeScreenshot",
-    description: "Captures a screenshot from the terminal",
+    description: "Captures a screenshot for mac from the terminal",
     parameters: {
         type: "object",
         properties: {},
         required: [],
     },
     example: "Capture a screenshot from the terminal"
+};
+
+export const takeScreenshot = {
+  execute,
+  details,
 };
