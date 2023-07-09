@@ -1,4 +1,4 @@
-![Image](https://i.imgur.com/aFpv4iu.gif)
+<!-- ![Image](https://i.imgur.com/aFpv4iu.gif) -->
 [FunctionChain: OpenAI Function Calling Simplified in Node.js](https://youtu.be/jmrFG7n3Nt8)
 
 # Quickstart
@@ -101,7 +101,7 @@ const res3 = await functionChain.call("Get me the latest price of Ethereum", {
     functions: ["fetchCryptoPrice"] // Optionally specify which functions to use
 });
 
-console.log(res1, res2, res3);
+console.log(`1. ${res1} \n2. ${res2} \n3. ${res3}`);
 ```
 
 ## Examples
@@ -112,8 +112,11 @@ Here are some examples of how you can use FunctionChain:
 
 ```javascript
 import { FunctionChain, openApp } from "ai-function-chain";
+
 const functionChain = new FunctionChain({functions: [openApp]});
+
 const res = await functionChain.call("Open the calculator on my computer");
+
 console.log(res);
 ```
 Alternatively, you can run the following:
@@ -125,9 +128,13 @@ node examples/unix-example.js
 
 ```javascript
 import { FunctionChain, fetchCryptoPrice } from "ai-function-chain";
+
 const functionChain = new FunctionChain({functions: [fetchCryptoPrice]});
+
 const res1 = await functionChain.call("Get me the latest price of Bitcoin");
+
 const res2 = await functionChain.call("Get me the latest price of Ethereum");
+
 console.log(`1. ${res1} \n2. ${res2}`);
 ```
 Alternatively, you can run the following:
@@ -141,10 +148,13 @@ You can get your Pinecone API Key [here](https://docs.pinecone.io/docs/node-clie
 
 ```javascript
 import { FunctionChain, createPinecone, updatePinecone, askPinecone } from "ai-function-chain";
+
 const functionChain = new FunctionChain({functions: [createPinecone, updatePinecone, askPinecone]});
+
 const create = await functionChain.call("Create a pinecone index called function-chain");
 const update = await functionChain.call("Add 'John Smith, his phone number is 123-456-7890 and email johnsmith@example.com' under the namespace my-contacts");
 const ask = await functionChain.call("What is John Smiths number? to-do's in my my-contacts pinecone namespace?");
+
 console.log(`1. ${create} \n2. ${update} \n3. ${ask}`);
 ```
 Alternatively, you can run the following:
@@ -158,11 +168,14 @@ You can get your Alpha Vantage API key [here](https://www.alphavantage.co/suppor
 
 ```javascript
 import { FunctionChain, getAlphaVantageCompanyOverview } from "ai-function-chain";
+
 const functionChain = new FunctionChain({functions: [getAlphaVantageCompanyOverview]});
+
 const res1 = await functionChain.call("What is Apple's market capitalization");
 const res2 = await functionChain.call("What is Microsoft's PE Ratio");
 const res3 = await functionChain.call("What is Amazon's Revenue (TTM)");
 const res4 = await functionChain.call("What is Alphabet's EBITDA");
+
 console.log(`1. ${res1} \n2. ${res2} \n3. ${res3} \n4. ${res4}`);
 ```
 Alternatively, you can run the following:
@@ -176,7 +189,9 @@ You can get your Huggingface API key [here](https://huggingface.co/settings/toke
 
 ```javascript
 import { FunctionChain, huggingFaceImageClassification } from "ai-function-chain";
+
 const functionChain = new FunctionChain({functions: [huggingFaceImageClassification]}); 
+
 const res = await functionChain.call("What is this image? https://www.shutterstock.com/image-photo/yellow-lovebird-sitting-alone-on-260nw-1894954309.jpg");
 console.log(res);
 ```
@@ -191,9 +206,11 @@ You can get your Visual Crossing API key [here](https://www.visualcrossing.com/w
 
 ```javascript
 import { FunctionChain, getVisualCrossingWeatherForecast } from "ai-function-chain";
+
 const functionChain = new FunctionChain({functions: [getVisualCrossingWeatherForecast]});
-const res1 = await functionChain.call("What's the weather this week in Toronto");
-console.log(res1);
+
+const res = await functionChain.call("What's the weather this week in Toronto");
+console.log(res);
 ```
 Alternatively, you can run the following:
 ```bash
