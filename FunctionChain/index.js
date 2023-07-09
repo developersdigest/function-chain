@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import fetch from "node-fetch";
 import * as allFunctions from './entrypoint.js';
 
 dotenv.config();
@@ -11,8 +12,10 @@ export class FunctionChain {
       "Content-Type": "application/json",
       Authorization: "Bearer " + process.env.OPENAI_API_KEY,
     };
-    this.functions = initOptions.functions || Object.values(allFunctions);
+    this.functions = initOptions.functions || [];
+    this.skipAdditionalAPICalls = initOptions.skipAdditionalAPICalls || false;
   }
+
   async call(message, options = {}) {
     let functionMap;
     if (options.functions && options.functions.length > 0) {
@@ -27,8 +30,12 @@ export class FunctionChain {
       }, {});
     } else {
       console.warn("No functions were provided. Defaulting to all available functions.");
-      functionMap = await this.getFunctions();
+      functionMap = Object.values(allFunctions).reduce((result, func) => {
+        result[func.details.name] = func;
+        return result;
+      }, {});
     }
+
     let data = {
       messages: [
         {
@@ -40,6 +47,7 @@ export class FunctionChain {
       functions: Object.values(functionMap).map(func => func.details),
       function_call: "auto",
     };
+
     try {
       let response = await fetch(this.baseURL, {
         method: "POST",
@@ -55,30 +63,41 @@ export class FunctionChain {
       ) {
         let message = response.choices[0].message;
         const function_name = message.function_call.name;
+
         if (executedFunctions[function_name]) {
           break;
         }
+
         let function_response = "";
         if (functionMap.hasOwnProperty(function_name)) {
           const functionArgs = JSON.parse(message.function_call.arguments);
+          console.log(`Executing function: "${function_name}" with args: ${JSON.stringify(functionArgs)}`);
           const functionToExecute = functionMap[function_name];
           function_response = await functionToExecute.execute(functionArgs);
         } else {
           throw new Error(`Unsupported function: ${function_name}, ensure function name within description matches the javascript file name i.e. latestPrices.js should have a name: 'latestPrices' within the details object`);
         }
+
         executedFunctions[function_name] = true;
         data.messages.push({
           role: "function",
           name: function_name,
           content: function_response,
         });
-        response = await fetch(this.baseURL, {
-          method: "POST",
-          headers: this.headers,
-          body: JSON.stringify(data),
-        });
-        response = await response.json();
+
+        // If additional API calls are not to be skipped, make another API call to OpenAI, otherwise return the response
+        if(!this.skipFinalAPICall) {
+          response = await fetch(this.baseURL, {
+            method: "POST",
+            headers: this.headers,
+            body: JSON.stringify(data),
+          });
+          response = await response.json();
+        }else{
+          return JSON.stringify(function_response);
+        }
       }
+
       if (response.error) {
         throw new Error(response.error.message);
       } else {
@@ -89,4 +108,5 @@ export class FunctionChain {
     }
   }
 }
+
 export * from './entrypoint.js';

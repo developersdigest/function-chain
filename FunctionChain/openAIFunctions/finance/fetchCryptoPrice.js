@@ -5,7 +5,11 @@ const execute = async (options) => {
     const url = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoName.toString()}&vs_currencies=${vsCurrency.toString()}`;
     const response = await fetch(url);
     const data = await response.json();
-    return String(data[cryptoName.toLowerCase()][vsCurrency.toLowerCase()]);
+    return {
+      cryptoName: cryptoName.toLowerCase(),
+      price: data[cryptoName.toLowerCase()][vsCurrency.toLowerCase()],
+    };
+    }toLowerCase()]);
   } catch (error) {
     console.error(`Error fetching ${cryptoName} price:`, error);
     throw error;
