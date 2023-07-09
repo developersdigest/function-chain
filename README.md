@@ -26,17 +26,19 @@ npm install
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-4. After setting up `index.js` and adding your functions, run your project using:
+4. Now you can run with the example in `index.js` by using:
 
 ```bash
 node index.js
+or
+npm run dev
 ```
 
 ## API Keys
 
 To use `FunctionChain`, you must obtain and provide the appropriate API keys. 
 
-REQUIRED: or all functions:
+REQUIRED: for all functions:
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key
@@ -228,4 +230,4 @@ You can contribute in several ways:
 - **Open an issue**: If you've identified a bug or have a feature request, you can open an issue on the GitHub repository.
 - **Get in touch**: If you have ideas or questions, feel free to reach out directly. Your feedback and ideas are invaluable in continuing to improve `FunctionChain`.
 
-We're excited to see how you use `FunctionChain` and to hear your ideas for improvements!
+I am excited to see how you use `FunctionChain` and to hear your ideas for improvements!
