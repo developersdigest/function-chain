@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@huggingface/inference": "^1.8.0",
+    "ai": "^2.1.15",
     "ai-function-chain": "^0.0.44",
     "dotenv": "^16.3.1"
   },

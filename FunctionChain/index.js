@@ -42,6 +42,7 @@ export class FunctionChain {
           content: message,
         },
       ],
+      stream: true,
       model: this.model,
       functions: functionArray.map(
         (functionName) => openAIFunctions[functionName].details
@@ -117,6 +118,9 @@ export class FunctionChain {
         };
       }
     }
-    return openAIFunctions;
+    // Test streaming
+    const stream = OpenAIStream(openAIFunctions)
+    return new StreamingTextResponse(stream)
+    // return openAIFunctions;
   }
 }

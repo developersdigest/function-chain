@@ -72,6 +72,14 @@ VISUAL_CROSSING_API_KEY=your_visual_crossing_api_key
 
 Get your Visual Crossing API key [here](https://www.visualcrossing.com/weather-api)
 
+**For Huggingface API functions:**
+
+```bash
+HUGGING_FACE_API_KEY=your_hugging_face_api_key
+```
+
+You can get your Huggingface API key [here](https://huggingface.co/settings/tokens) (A read only token)
+
 ## Setup
 
 To setup `FunctionChain`, follow the steps below:
@@ -176,7 +184,7 @@ node examples/alpha-vantage-examples.js
 
 **Example 5: Huggingface Inference (Free API Key Required)**
 
-You can get your Alpha Vantage API key [here](https://huggingface.co/settings/tokens) (A read only token)
+You can get your Huggingface API key [here](https://huggingface.co/settings/tokens) (A read only token)
 
 ```javascript
 import { FunctionChain } from "ai-function-chain";

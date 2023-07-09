@@ -73,15 +73,15 @@ export const details = {
         },
         indexName: {
             type: 'string',
-            description: 'The name of the Pinecone index to be updated. If not provided, it will default to the value specified in the .env file.',
+            description: 'Optional name of the Pinecone index to be updated. If not provided, it will default to the value specified in the .env file.',
         },
         source: {
             type: 'string',
-            description: 'The source of the text being processed. This is optional and will be included in the vector metadata if provided.',
+            description: 'Optional source of the text being processed. This is optional and will be included in the vector metadata if provided.',
         },
         namespace: {
             type: 'string',
-            description: 'The namespace to be used when updating the Pinecone index. This is optional and if not provided, no namespace will be used.',
+            description: 'Optional namespace to be used when updating the Pinecone index. This is optional and if not provided, no namespace will be used.',
         },
     },
     required: ['text'],

@@ -27,9 +27,10 @@
   "type": "module",
   "readme": "README.md",
   "dependencies": {
+    "@huggingface/inference": "^1.8.0",
     "@pinecone-database/pinecone": "^0.1.6",
+    "ai": "^2.1.15",
     "dotenv": "^16.3.1",
-    "langchain": "^0.0.102",
-    "@huggingface/inference": "^1.8.0"
+    "langchain": "^0.0.102"
   }
 }
