@@ -219,6 +219,44 @@ Alternatively, you can run the following:
 ```bash
 node examples/weather-visual-crossing-example.js
 ```
+# Function Descriptions
+
+## fetchCryptoPrice
+- **Name**: fetchCryptoPrice
+- **Description**: Fetches the price of a cryptocurrency from CoinGecko.
+
+## getAlphaVantageCompanyOverview
+- **Name**: getAlphaVantageCompanyOverview
+- **Description**: Fetches company information, financial ratios, and other key metrics for the specified equity using the Alpha Vantage API. This includes the following information: Symbol, Asset Type, Name, Description, CIK, Exchange, Currency, Country, Sector, Industry, Address, Fiscal Year End, Latest Quarter, Market Capitalization, EBITDA, PE Ratio, PEG Ratio, Book Value, Dividend Per Share, Dividend Yield, EPS, Revenue Per Share (TTM), Profit Margin, Operating Margin (TTM), Return on Assets (TTM), Return on Equity (TTM), Revenue (TTM), Gross Profit (TTM), Diluted EPS (TTM), Quarterly Earnings Growth (YoY), Quarterly Revenue Growth (YoY), Analyst Target Price, Trailing PE, Forward PE, Price to Sales Ratio (TTM), Price to Book Ratio, EV to Revenue, EV to EBITDA, Beta, 52-Week High, 52-Week Low, 50-Day Moving Average, 200-Day Moving Average, Shares Outstanding, Dividend Date, Ex-Dividend Date.
+
+## getAlphaVantageIntraday
+- **Name**: getAlphaVantageIntraday
+- **Description**: Fetches intraday data for a specified stock without extended hours.
+
+## askPinecone
+- **Name**: askPinecone
+- **Description**: This function queries/asks a question to a Pinecone index and returns the top answer. The Pinecone client, index name, and API keys are specified in the .env file or function parameters.
+
+## createPinecone
+- **Name**: createPinecone
+- **Description**: This function checks if a specified Pinecone index exists. If it does not exist, it will create a new one. Do not confuse this with updating an index.
+
+## updatePinecone
+- **Name**: updatePinecone
+- **Description**: This function updates a Pinecone index with vector embeddings generated from a given text with an optional namespace if passed. The Pinecone client, index name, and API keys are specified in the .env file or function parameters.
+
+## openApp
+- **Name**: openApp
+- **Description**: Opens a specified application on your computer
+
+## takeScreenshot
+- **Name**: takeScreenshot
+- **Description**: Captures a screenshot from the terminal
+
+## getVisualCrossingWeatherForecast
+- **Name**: getVisualCrossingWeatherForecast
+- **Description**: Fetches weather forecast for the specified location using the Visual Crossing API. This includes temperature, humidity, wind speed, and other important weather data.
+
 
 # Contribution
 

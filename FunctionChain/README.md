@@ -26,17 +26,19 @@ npm install
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-4. After setting up `index.js` and adding your functions, run your project using:
+4. Now you can run with the example in `index.js` by using:
 
 ```bash
 node index.js
+or
+npm run dev
 ```
 
 ## API Keys
 
 To use `FunctionChain`, you must obtain and provide the appropriate API keys. 
 
-For all functions:
+REQUIRED: for all functions:
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key
@@ -44,7 +46,7 @@ OPENAI_API_KEY=your_openai_api_key
 
 You need to obtain your OpenAI API Key [here](https://platform.openai.com/account/api-keys) and add it to the `.env` file.
 
-If you intend to use specific functions, you need to obtain the respective API keys:
+OPTIONAL: If you intend to use specific functions, you need to obtain the respective API keys:
 
 **For Alpha Vantage functions:**
 
@@ -71,6 +73,14 @@ VISUAL_CROSSING_API_KEY=your_visual_crossing_api_key
 ```
 
 Get your Visual Crossing API key [here](https://www.visualcrossing.com/weather-api)
+
+**For Huggingface API functions:**
+
+```bash
+HUGGING_FACE_API_KEY=your_hugging_face_api_key
+```
+
+You can get your Huggingface API key [here](https://huggingface.co/settings/tokens) (A read only token)
 
 ## Setup
 
@@ -173,7 +183,26 @@ Alternatively, you can run the following:
 node examples/alpha-vantage-examples.js
 ```
 
-**Example 5: Visual Crossing API (API Key Required)**
+
+**Example 5: Huggingface Inference (Free API Key Required)**
+
+You can get your Huggingface API key [here](https://huggingface.co/settings/tokens) (A read only token)
+
+```javascript
+import { FunctionChain } from "ai-function-chain";
+
+const functionChain = new FunctionChain({functionArray: ["huggingFaceImageClassification"]}); 
+
+const res = await functionChain.call("What is this image? https://www.shutterstock.com/image-photo/yellow-lovebird-sitting-alone-on-260nw-1894954309.jpg");
+
+console.log(res);
+```
+Alternatively, you can run the following:
+```bash
+node examples/hugging-face-example.js
+```
+
+**Example 6: Visual Crossing API (API Key Required)**
 
 You can get your Visual Crossing API key [here](https://www.visualcrossing.com/weather-api)
 
@@ -188,8 +217,46 @@ console.log(res1);
 ```
 Alternatively, you can run the following:
 ```bash
-node examples/visual-crossing-example.js
+node examples/weather-visual-crossing-example.js
 ```
+# Function Descriptions
+
+## fetchCryptoPrice
+- **Name**: fetchCryptoPrice
+- **Description**: Fetches the price of a cryptocurrency from CoinGecko.
+
+## getAlphaVantageCompanyOverview
+- **Name**: getAlphaVantageCompanyOverview
+- **Description**: Fetches company information, financial ratios, and other key metrics for the specified equity using the Alpha Vantage API. This includes the following information: Symbol, Asset Type, Name, Description, CIK, Exchange, Currency, Country, Sector, Industry, Address, Fiscal Year End, Latest Quarter, Market Capitalization, EBITDA, PE Ratio, PEG Ratio, Book Value, Dividend Per Share, Dividend Yield, EPS, Revenue Per Share (TTM), Profit Margin, Operating Margin (TTM), Return on Assets (TTM), Return on Equity (TTM), Revenue (TTM), Gross Profit (TTM), Diluted EPS (TTM), Quarterly Earnings Growth (YoY), Quarterly Revenue Growth (YoY), Analyst Target Price, Trailing PE, Forward PE, Price to Sales Ratio (TTM), Price to Book Ratio, EV to Revenue, EV to EBITDA, Beta, 52-Week High, 52-Week Low, 50-Day Moving Average, 200-Day Moving Average, Shares Outstanding, Dividend Date, Ex-Dividend Date.
+
+## getAlphaVantageIntraday
+- **Name**: getAlphaVantageIntraday
+- **Description**: Fetches intraday data for a specified stock without extended hours.
+
+## askPinecone
+- **Name**: askPinecone
+- **Description**: This function queries/asks a question to a Pinecone index and returns the top answer. The Pinecone client, index name, and API keys are specified in the .env file or function parameters.
+
+## createPinecone
+- **Name**: createPinecone
+- **Description**: This function checks if a specified Pinecone index exists. If it does not exist, it will create a new one. Do not confuse this with updating an index.
+
+## updatePinecone
+- **Name**: updatePinecone
+- **Description**: This function updates a Pinecone index with vector embeddings generated from a given text with an optional namespace if passed. The Pinecone client, index name, and API keys are specified in the .env file or function parameters.
+
+## openApp
+- **Name**: openApp
+- **Description**: Opens a specified application on your computer
+
+## takeScreenshot
+- **Name**: takeScreenshot
+- **Description**: Captures a screenshot from the terminal
+
+## getVisualCrossingWeatherForecast
+- **Name**: getVisualCrossingWeatherForecast
+- **Description**: Fetches weather forecast for the specified location using the Visual Crossing API. This includes temperature, humidity, wind speed, and other important weather data.
+
 
 # Contribution
 
@@ -201,4 +268,4 @@ You can contribute in several ways:
 - **Open an issue**: If you've identified a bug or have a feature request, you can open an issue on the GitHub repository.
 - **Get in touch**: If you have ideas or questions, feel free to reach out directly. Your feedback and ideas are invaluable in continuing to improve `FunctionChain`.
 
-We're excited to see how you use `FunctionChain` and to hear your ideas for improvements!
+I am excited to see how you use `FunctionChain` and to hear your ideas for improvements!
