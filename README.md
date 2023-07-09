@@ -34,6 +34,28 @@ or
 npm run dev
 ```
 
+## Setup
+
+To setup `FunctionChain`, follow the steps below:
+
+1. Create an `index.js` file in the root of your project.
+2. Import the `FunctionChain` class from `ai-function-chain` and instantiate it.
+3. Call the `call` method with a message. Optionally, you can specify a set of functions to execute.
+
+```javascript
+import { FunctionChain } from "ai-function-chain";
+
+const functionChain = new FunctionChain();
+
+const res1 = await functionChain.call("Get me the latest price of Bitcoin");
+const res2 = await functionChain.call("Open the calculator on my computer");
+const res3 = await functionChain.call("Get me the latest price of Ethereum", {
+    functions: ["fetchCryptoPrice"] // Optionally specify which functions to use
+});
+
+console.log(`1. ${res1} \n2. ${res2} \n3. ${res3}`);
+```
+
 ## API Keys
 
 To use `FunctionChain`, you must obtain and provide the appropriate API keys. 
@@ -82,27 +104,6 @@ HUGGING_FACE_API_KEY=your_hugging_face_api_key
 
 You can get your Huggingface API key [here](https://huggingface.co/settings/tokens) (A read only token)
 
-## Setup
-
-To setup `FunctionChain`, follow the steps below:
-
-1. Create an `index.js` file in the root of your project.
-2. Import the `FunctionChain` class from `ai-function-chain` and instantiate it.
-3. Call the `call` method with a message. Optionally, you can specify a set of functions to execute.
-
-```javascript
-import { FunctionChain } from "ai-function-chain";
-
-const functionChain = new FunctionChain();
-
-const res1 = await functionChain.call("Get me the latest price of Bitcoin");
-const res2 = await functionChain.call("Open the calculator on my computer");
-const res3 = await functionChain.call("Get me the latest price of Ethereum", {
-    functions: ["fetchCryptoPrice"] // Optionally specify which functions to use
-});
-
-console.log(`1. ${res1} \n2. ${res2} \n3. ${res3}`);
-```
 
 ## Examples
 
