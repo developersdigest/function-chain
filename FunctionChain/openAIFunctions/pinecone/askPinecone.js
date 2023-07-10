@@ -69,7 +69,7 @@ const details = {
   example: 'Query the Pinecone index with a question.',
 };
 
-export const askPincone = {
+export const askPinecone = {
   execute,
   details,
 };
