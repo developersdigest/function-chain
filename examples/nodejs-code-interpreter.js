@@ -1,14 +1,9 @@
 import { FunctionChain, codeInterpreter } from "ai-function-chain";
-
 const functionChain = new FunctionChain({
   functions: [codeInterpreter],
 });
-
-let res1 = await functionChain.call(
-  "Using node.js execute a function that will give me a random number"
-);
-console.log(res1);
-
+let res1 = await functionChain.call("Using node.js execute a function that will give me a random number");
+console.log("1.", res1);
 let res2 = await functionChain.call(`
     Execute this in Node.js:
     const fibonacci = (n) => {
@@ -17,9 +12,6 @@ let res2 = await functionChain.call(`
     };
     fibonacci(10);
   `);
-console.log(res2);
-
-let res3 = await functionChain.call(
-  "Execute a twoSum function in node.js"
-);
-console.log(res3);
+console.log("2.", res2);
+let res3 = await functionChain.call("Execute a twoSum function in node.js");
+console.log("3.", res3);

@@ -242,11 +242,41 @@ node examples/wikipedia-example.js
 
 **Note:** In this example, we're using the `skipFinalAPICall: true` option. This ensures that the result is obtained directly from the `wikipedia` function, without making a final API call to OpenAI.
 
+### Example 8: Using the Code Interpreter
+
+This example demonstrates how you can use the `codeInterpreter` function from the AI Function Chain to execute code snippets in Node.js:
+
+```javascript
+import { FunctionChain, codeInterpreter } from "ai-function-chain";
+
+const functionChain = new FunctionChain({ functions: [codeInterpreter] });
+
+let res1 = await functionChain.call("Using node.js execute a function that will give me a random number");
+console.log("1.", res1);
+
+let res2 = await functionChain.call(`
+  Execute this in Node.js:
+  const fibonacci = (n) => {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  };
+  fibonacci(10);
+`);
+console.log("2.", res2);
+
+let res3 = await functionChain.call("Execute a twoSum function in node.js");
+console.log("3.", res3);
+
+
 # Function Descriptions
 
 ## wikipedia
 - **Name**: wikipedia
 - **Description**: Search for "JavaScript" on Wikipedia.
+
+## codeInterpreter
+- **Name**: codeInterpreter
+- **Description**: Function can execute Node.js code directly code requested within a Node.js V8 runtime written in Javascript and returns the result. Doesn't support any new require or import statements yet
 
 ## fetchCryptoPrice
 - **Name**: fetchCryptoPrice

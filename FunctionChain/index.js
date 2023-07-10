@@ -70,7 +70,8 @@ export class FunctionChain {
 
         let function_response = "";
         if (functionMap.hasOwnProperty(function_name)) {
-        
+          // remove template literals
+          message.function_call.arguments = message.function_call.arguments.replace(/`/g, '');
           const functionArgs = JSON.parse(message.function_call.arguments);
           console.log(`Executing function: "${function_name}" with args: ${JSON.stringify(functionArgs)}`);
         
