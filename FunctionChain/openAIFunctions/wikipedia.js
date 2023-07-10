@@ -50,7 +50,7 @@ const details = {
     },
     required: ['query'],
   },
-  example: 'Search for "JavaScript" on Wikipedia and get the content of the top 3 results',
+  example: 'Search for "JavaScript" on Wikipedia',
 };
 
 export const wikipedia = {
