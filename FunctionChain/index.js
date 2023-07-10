@@ -13,7 +13,7 @@ export class FunctionChain {
       Authorization: "Bearer " + process.env.OPENAI_API_KEY,
     };
     this.functions = initOptions.functions || [];
-    this.skipAdditionalAPICalls = initOptions.skipAdditionalAPICalls || false;
+    this.skipFinalAPICall = initOptions.skipFinalAPICall || false;
   }
 
   async call(message, options = {}) {
@@ -86,6 +86,7 @@ export class FunctionChain {
         });
 
         // If additional API calls are not to be skipped, make another API call to OpenAI, otherwise return the response
+        console.log('skip', this.skipFinalAPICall)
         if(!this.skipFinalAPICall) {
           response = await fetch(this.baseURL, {
             method: "POST",
@@ -94,6 +95,7 @@ export class FunctionChain {
           });
           response = await response.json();
         }else{
+          console.log("Skipping final API call to OpenAI, return function response")
           return JSON.stringify(function_response);
         }
       }
