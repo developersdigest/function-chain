@@ -70,8 +70,10 @@ export class FunctionChain {
 
         let function_response = "";
         if (functionMap.hasOwnProperty(function_name)) {
+        
           const functionArgs = JSON.parse(message.function_call.arguments);
-          // console.log(`Executing function: "${function_name}" with args: ${JSON.stringify(functionArgs)}`);
+          console.log(`Executing function: "${function_name}" with args: ${JSON.stringify(functionArgs)}`);
+        
           const functionToExecute = functionMap[function_name];
           function_response = await functionToExecute.execute(functionArgs);
         } else {
