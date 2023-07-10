@@ -15,3 +15,5 @@ export * from './openAIFunctions/finance/getAlphaVantageIntraday.js';
 export * from './openAIFunctions/weather/getVisualCrossingWeatherForecast.js';
 // Wikipedia Functions
 export * from './openAIFunctions/wikipedia.js';
+// Node.JS Code Interpreter
+export * from 'ai-function-chain/openAIFunctions/codeInterpreter.js';
