@@ -222,7 +222,7 @@ node examples/weather-visual-crossing-example.js
 
 This example demonstrates how you can use the `wikipedia` function from the AI Function Chain to retrieve a summary of a Wikipedia page:
 
-```
+```javascript
 import { FunctionChain, wikipedia } from "ai-function-chain";
 
 const functionChain = new FunctionChain({
