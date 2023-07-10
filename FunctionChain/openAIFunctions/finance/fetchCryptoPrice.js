@@ -9,7 +9,6 @@ const execute = async (options) => {
       cryptoName: cryptoName.toLowerCase(),
       price: data[cryptoName.toLowerCase()][vsCurrency.toLowerCase()],
     };
-    }toLowerCase()]);
   } catch (error) {
     console.error(`Error fetching ${cryptoName} price:`, error);
     throw error;
