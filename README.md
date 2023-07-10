@@ -218,7 +218,35 @@ Alternatively, you can run the following:
 node examples/weather-visual-crossing-example.js
 ```
 
+### Example 7: Using the Wikipedia API (No API Key required)
+
+This example demonstrates how you can use the `wikipedia` function from the AI Function Chain to retrieve a summary of a Wikipedia page:
+
+```
+import { FunctionChain, wikipedia } from "ai-function-chain";
+
+const functionChain = new FunctionChain({
+  functions: [wikipedia],
+  skipFinalAPICall: true,
+});
+
+const res = await functionChain.call("In one sentence, look up on wikipedia, what is Langchain?");
+console.log(res);
+```
+
+You can also run this example directly from the command line:
+
+```
+node examples/wikipedia-example.js
+```
+
+**Note:** In this example, we're using the `skipFinalAPICall: true` option. This ensures that the result is obtained directly from the `wikipedia` function, without making a final API call to OpenAI.
+
 # Function Descriptions
+
+## wikipedia
+- **Name**: wikipedia
+- **Description**: Search for "JavaScript" on Wikipedia.
 
 ## fetchCryptoPrice
 - **Name**: fetchCryptoPrice

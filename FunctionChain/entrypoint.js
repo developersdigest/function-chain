@@ -13,3 +13,5 @@ export * from './openAIFunctions/finance/getAlphaVantageCompanyOverview.js';
 export * from './openAIFunctions/finance/getAlphaVantageIntraday.js';
 // Weather Functions
 export * from './openAIFunctions/weather/getVisualCrossingWeatherForecast.js';
+// Wikipedia Functions
+export * from './openAIFunctions/wikipedia.js';

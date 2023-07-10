@@ -86,7 +86,6 @@ export class FunctionChain {
         });
 
         // If additional API calls are not to be skipped, make another API call to OpenAI, otherwise return the response
-        console.log('skip', this.skipFinalAPICall)
         if(!this.skipFinalAPICall) {
           response = await fetch(this.baseURL, {
             method: "POST",

@@ -1,4 +1,4 @@
-![Image](https://i.imgur.com/aFpv4iu.gif)
+<!-- ![Image](https://i.imgur.com/aFpv4iu.gif) -->
 [FunctionChain: OpenAI Function Calling Simplified in Node.js](https://youtu.be/jmrFG7n3Nt8)
 
 # Quickstart
@@ -32,6 +32,28 @@ OPENAI_API_KEY=your_openai_api_key
 node index.js
 or
 npm run dev
+```
+
+## Setup
+
+To setup `FunctionChain`, follow the steps below:
+
+1. Create an `index.js` file in the root of your project.
+2. Import the `FunctionChain` class from `ai-function-chain` and instantiate it.
+3. Call the `call` method with a message. Optionally, you can specify a set of functions to execute.
+
+```javascript
+import { FunctionChain, fetchCryptoPrice, openApp } from "ai-function-chain";
+
+const functionChain = new FunctionChain({
+  functions: [openApp, fetchCryptoPrice],
+});
+
+const res1 = await functionChain.call("Open the calculator on my computer");
+const res2 = await functionChain.call("Get me the latest price of Bitcoin");
+const res3 = await functionChain.call("Get me the latest price of Ethereum");
+
+console.log(`${res1} \n${res2} \n${res3}`);
 ```
 
 ## API Keys
@@ -82,27 +104,6 @@ HUGGING_FACE_API_KEY=your_hugging_face_api_key
 
 You can get your Huggingface API key [here](https://huggingface.co/settings/tokens) (A read only token)
 
-## Setup
-
-To setup `FunctionChain`, follow the steps below:
-
-1. Create an `index.js` file in the root of your project.
-2. Import the `FunctionChain` class from `ai-function-chain` and instantiate it.
-3. Call the `call` method with a message. Optionally, you can specify a set of functions to execute.
-
-```javascript
-import { FunctionChain } from "ai-function-chain";
-
-const functionChain = new FunctionChain();
-
-const res1 = await functionChain.call("Get me the latest price of Bitcoin");
-const res2 = await functionChain.call("Open the calculator on my computer");
-const res3 = await functionChain.call("Get me the latest price of Ethereum", {
-    functions: ["fetchCryptoPrice"] // Optionally specify which functions to use
-});
-
-console.log(res1, res2, res3);
-```
 
 ## Examples
 
@@ -111,11 +112,12 @@ Here are some examples of how you can use FunctionChain:
 **Example 1: Unix Example (No additional API Key Required)** 
 
 ```javascript
-import { FunctionChain } from "ai-function-chain";
+import { FunctionChain, openApp } from "ai-function-chain";
 
-const functionChain = new FunctionChain();
+const functionChain = new FunctionChain({functions: [openApp]});
 
 const res = await functionChain.call("Open the calculator on my computer");
+
 console.log(res);
 ```
 Alternatively, you can run the following:
@@ -126,11 +128,12 @@ node examples/unix-example.js
 **Example 2: Crypto Prices (No API Key Required)**
 
 ```javascript
-import { FunctionChain } from "ai-function-chain";
+import { FunctionChain, fetchCryptoPrice } from "ai-function-chain";
 
-const functionChain = new FunctionChain();
+const functionChain = new FunctionChain({functions: [fetchCryptoPrice]});
 
 const res1 = await functionChain.call("Get me the latest price of Bitcoin");
+
 const res2 = await functionChain.call("Get me the latest price of Ethereum");
 
 console.log(`1. ${res1} \n2. ${res2}`);
@@ -145,11 +148,9 @@ node examples/no-api-key-example.js
 You can get your Pinecone API Key [here](https://docs.pinecone.io/docs/node-client)
 
 ```javascript
-import { FunctionChain } from "ai-function-chain";
+import { FunctionChain, createPinecone, updatePinecone, askPinecone } from "ai-function-chain";
 
-const functionChain = new FunctionChain({
-    functionsArray: ["createPinecone", "updatePinecone", "askPinecone"]
-});
+const functionChain = new FunctionChain({functions: [createPinecone, updatePinecone, askPinecone]});
 
 const create = await functionChain.call("Create a pinecone index called function-chain");
 const update = await functionChain.call("Add 'John Smith, his phone number is 123-456-7890 and email johnsmith@example.com' under the namespace my-contacts");
@@ -167,9 +168,9 @@ node examples/pinecone-example.js
 You can get your Alpha Vantage API key [here](https://www.alphavantage.co/support/#api-key)
 
 ```javascript
-import { FunctionChain } from "ai-function-chain";
+import { FunctionChain, getAlphaVantageCompanyOverview } from "ai-function-chain";
 
-const functionChain = new FunctionChain({functions: ["getAlphaVantageCompanyOverview"]});
+const functionChain = new FunctionChain({functions: [getAlphaVantageCompanyOverview]});
 
 const res1 = await functionChain.call("What is Apple's market capitalization");
 const res2 = await functionChain.call("What is Microsoft's PE Ratio");
@@ -183,18 +184,16 @@ Alternatively, you can run the following:
 node examples/alpha-vantage-examples.js
 ```
 
-
 **Example 5: Huggingface Inference (Free API Key Required)**
 
 You can get your Huggingface API key [here](https://huggingface.co/settings/tokens) (A read only token)
 
 ```javascript
-import { FunctionChain } from "ai-function-chain";
+import { FunctionChain, huggingFaceImageClassification } from "ai-function-chain";
 
-const functionChain = new FunctionChain({functions: ["huggingFaceImageClassification"]}); 
+const functionChain = new FunctionChain({functions: [huggingFaceImageClassification]}); 
 
 const res = await functionChain.call("What is this image? https://www.shutterstock.com/image-photo/yellow-lovebird-sitting-alone-on-260nw-1894954309.jpg");
-
 console.log(res);
 ```
 Alternatively, you can run the following:
@@ -207,19 +206,47 @@ node examples/hugging-face-example.js
 You can get your Visual Crossing API key [here](https://www.visualcrossing.com/weather-api)
 
 ```javascript
-import { FunctionChain } from "ai-function-chain";
+import { FunctionChain, getVisualCrossingWeatherForecast } from "ai-function-chain";
 
-const functionChain = new FunctionChain({functions: ["getVisualCrossingWeatherForecast"]});
+const functionChain = new FunctionChain({functions: [getVisualCrossingWeatherForecast]});
 
-const res1 = await functionChain.call("What's the weather this week in Toronto");
-
-console.log(res1);
+const res = await functionChain.call("What's the weather this week in Toronto");
+console.log(res);
 ```
 Alternatively, you can run the following:
 ```bash
 node examples/weather-visual-crossing-example.js
 ```
+
+### Example 7: Using the Wikipedia API (No API Key required)
+
+This example demonstrates how you can use the `wikipedia` function from the AI Function Chain to retrieve a summary of a Wikipedia page:
+
+```
+import { FunctionChain, wikipedia } from "ai-function-chain";
+
+const functionChain = new FunctionChain({
+  functions: [wikipedia],
+  skipFinalAPICall: true,
+});
+
+const res = await functionChain.call("In one sentence, look up on wikipedia, what is Langchain?");
+console.log(res);
+```
+
+You can also run this example directly from the command line:
+
+```
+node examples/wikipedia-example.js
+```
+
+**Note:** In this example, we're using the `skipFinalAPICall: true` option. This ensures that the result is obtained directly from the `wikipedia` function, without making a final API call to OpenAI.
+
 # Function Descriptions
+
+## wikipedia
+- **Name**: wikipedia
+- **Description**: Search for "JavaScript" on Wikipedia.
 
 ## fetchCryptoPrice
 - **Name**: fetchCryptoPrice
