@@ -8,7 +8,7 @@ const execute = async ({
   source,
   namespace,
 }) => {
-  console.log(`Updating Pinecone index with: ${text}..`);
+  // console.log(`Updating Pinecone index with: ${text}..`);
   const apiKey = process.env.PINECONE_API_KEY;
   const environment = process.env.PINECONE_ENVIRONMENT;
   const indexName = paramIndexName || process.env.PINECONE_INDEX;

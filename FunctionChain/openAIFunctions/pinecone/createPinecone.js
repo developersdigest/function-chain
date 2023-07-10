@@ -10,7 +10,7 @@ const execute = async ({ indexName: paramIndexName }) => {
     );
     return;
   }
-  console.log(`Checking if ${indexName} index exists in Pinecone...`);
+  // console.log(`Checking if ${indexName} index exists in Pinecone...`);
   const apiKey = process.env.PINECONE_API_KEY;
   const environment = process.env.PINECONE_ENVIRONMENT;
   const vectorDimension = 1536; // Vector dimension is set to a constant value

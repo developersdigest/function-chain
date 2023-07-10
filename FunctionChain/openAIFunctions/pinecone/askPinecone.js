@@ -2,7 +2,7 @@ import { PineconeClient } from "@pinecone-database/pinecone";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 
 const execute = async ({ indexName = process.env.PINECONE_INDEX, question, namespace }) => {
-  console.log(`Querying question to Pinecone index: ${question}`);
+  // console.log(`Querying question to Pinecone index: ${question}`);
   const apiKey = process.env.PINECONE_API_KEY;
   const environment = process.env.PINECONE_ENVIRONMENT;
 
